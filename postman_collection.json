@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "2ec80f17-9a24-4687-8eca-fabffa02bd20",
+		"name": "api-abinni",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create Account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Aban\",\n    \"email\": \"aban.falah.us@gmail.com\",\n    \"password\": \"123456\"\n  }\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://198.18.6.91:3000/account",
+					"protocol": "http",
+					"host": [
+						"198",
+						"18",
+						"6",
+						"91"
+					],
+					"port": "3000",
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Login on Google APIS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"aban.falah.us@gmail.com\",\n    \"password\":\"123456\",\n    \"returnSecureToken\":true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=<apiKey>",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"identitytoolkit",
+						"v3",
+						"relyingparty",
+						"verifyPassword"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyAVp6pzx8IFaKY4wJ7VT002V4V-hG2roc4",
+							"description": "The \"apiKey\" field from Firebase Credentials (Client side). Check the README file for more info"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create Patient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<idToken>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Falah\",\n    \"dob\": \"1/1/2000\",\n    \"status\": \"Onboarding\",\n    \"addresses\": [\"New york\", \"San Francisco\"],\n   \"additionals\": [{\"age\": 23}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://198.18.6.91:3000/patient",
+					"protocol": "http",
+					"host": [
+						"198",
+						"18",
+						"6",
+						"91"
+					],
+					"port": "3000",
+					"path": [
+						"patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Get All Patients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<idToken>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://198.18.6.91:3000/patients",
+					"protocol": "http",
+					"host": [
+						"198",
+						"18",
+						"6",
+						"91"
+					],
+					"port": "3000",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get a Patient by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<idToken>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://198.18.6.91:3000/patient/:patientId",
+					"protocol": "http",
+					"host": [
+						"198",
+						"18",
+						"6",
+						"91"
+					],
+					"port": "3000",
+					"path": [
+						"patient",
+						":patientId"
+					],
+					"variable": [
+						{
+							"key": "patientId",
+							"value": "<patientId>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Update Patient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<idToken>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dob\": \"2/2/2023\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://198.18.6.91:3000/patient/:patientId",
+					"protocol": "http",
+					"host": [
+						"198",
+						"18",
+						"6",
+						"91"
+					],
+					"port": "3000",
+					"path": [
+						"patient",
+						":patientId"
+					],
+					"variable": [
+						{
+							"key": "patientId",
+							"value": "<patientId>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
