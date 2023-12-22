@@ -1,4 +1,4 @@
-# ⚡️abinni⚡️ (Aban - Finni) take home project.
+# ⚡️Abinni⚡️ (Aban - Finni) server.
 
 ### Step 1 - To test the server
 
