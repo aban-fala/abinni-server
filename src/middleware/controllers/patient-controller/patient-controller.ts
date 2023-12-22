@@ -19,7 +19,6 @@ export class PatientController implements Controller {
 
   private readonly createPatient: RequestHandler = async (req, res, next) => {
     const patientFromInput: Patient = PatientClientModel.validate(req.body);
-    console.log("createPatient: patientFromInput", patientFromInput);
     const patient = await patientsService.createPatient(patientFromInput);
     const output = PatientClientModel.fromEntity(patient).toBodyPublicPatient();
     res.send(output);

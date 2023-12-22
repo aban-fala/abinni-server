@@ -22,20 +22,22 @@ export enum Status {
 
 export class Patient {
   constructor(
+    public readonly id: string,
     public readonly name: Name,
     public readonly dob: Date,
     public readonly status: Status,
     public readonly addresses: string[],
-    public readonly additionals: Additional[]
+    public readonly additionals: Additional
   ) {}
 
   static empty() {
     return new Patient(
+      "",
       { first: "", middle: "", last: "" },
       new Date(),
       Status.empty,
       [],
-      []
+      null
     );
   }
 }

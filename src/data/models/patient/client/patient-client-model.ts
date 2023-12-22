@@ -6,6 +6,7 @@ import {
 } from "./validators";
 
 export class PatientClientModel extends Patient {
+  static kId = "id";
   static kName = "name";
   static kDob = "dob";
   static kStatus = "status";
@@ -18,11 +19,12 @@ export class PatientClientModel extends Patient {
 
   static empty(): PatientClientModel {
     return new PatientClientModel(
+      "",
       { first: "", middle: "", last: "" },
       new Date(),
       Status.empty,
       [],
-      []
+      null
     );
   }
 
@@ -35,6 +37,7 @@ export class PatientClientModel extends Patient {
   static validate(body: any): PatientClientModel {
     this._validate(body);
     return new PatientClientModel(
+      body[PatientClientModel.kId],
       body[PatientClientModel.kName],
       body[PatientClientModel.kDob],
       body[PatientClientModel.kStatus],
@@ -45,6 +48,7 @@ export class PatientClientModel extends Patient {
 
   toBodyPublicPatient() {
     return {
+      [PatientClientModel.kId]: this.id,
       [PatientClientModel.kName]: this.name,
       [PatientClientModel.kDob]: this.dob,
       [PatientClientModel.kStatus]: this.status,

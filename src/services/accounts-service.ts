@@ -8,9 +8,7 @@ class AccountsService {
   async createAccount(userInput: User, password: string): Promise<User> {
     try {
       const createUserRes = await admin.auth().createUser({
-        displayName: userInput.name,
         email: userInput.email,
-        password: password,
       });
       const user = userInput.copyWith({ uid: createUserRes.uid });
       const documentData = UserFirestoreModel.fromEntity(user).toDocumentData();
@@ -23,11 +21,7 @@ class AccountsService {
     } catch (e) {
       switch (e.code) {
         case "auth/email-already-exists":
-          throw new HttpResponseError(
-            400,
-            "EXISTING_EMAIL",
-            "Email is already in use"
-          );
+          return userInput;
       }
       throw e;
     }

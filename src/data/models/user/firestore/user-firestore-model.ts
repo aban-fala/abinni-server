@@ -1,8 +1,6 @@
 import { User } from "../../../user";
 
 export class UserFirestoreModel extends User {
-  static kUid = "uid";
-  static kName = "name";
   static kEmail = "email";
 
   static fromEntity(entity: User): UserFirestoreModel {
@@ -10,13 +8,11 @@ export class UserFirestoreModel extends User {
   }
 
   static empty(): UserFirestoreModel {
-    return new UserFirestoreModel("", "", "");
+    return new UserFirestoreModel("", "");
   }
 
   toDocumentData() {
     return {
-      [UserFirestoreModel.kUid]: this.uid,
-      [UserFirestoreModel.kName]: this.name,
       [UserFirestoreModel.kEmail]: this.email,
     };
   }

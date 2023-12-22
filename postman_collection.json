@@ -98,7 +98,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Falah\",\n    \"dob\": \"1/1/2000\",\n    \"status\": \"Onboarding\",\n    \"addresses\": [\"New york\", \"San Francisco\"],\n   \"additionals\": [{\"age\": 23}]}",
+					"raw": "{\n    \"name\": {\"first\": \"Aban\",\n    \"last\": \"Falah\" },\n    \"dob\": \"1/1/2000\",\n    \"status\": \"Onboarding\",\n    \"addresses\": [\"New york\", \"San Francisco\"],\n   \"additionals\": {\"age\": 23,\n    \"email\": \"test@test.com\" }\n}",
 					"options": {
 						"raw": {
 							"language": "json"

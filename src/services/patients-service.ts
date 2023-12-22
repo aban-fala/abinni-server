@@ -24,11 +24,10 @@ export class PatientsService {
 
   async createPatient(patient: Patient): Promise<Patient> {
     const patientRef = this.doc();
-    const data = PatientFirestoreModel.fromEntity(patient)
-      .toDocumentData
-      // patientRef.id,
-      // FieldValue.serverTimestamp()
-      ();
+    const data = PatientFirestoreModel.fromEntity(
+      patient,
+      patientRef.id
+    ).toDocumentData();
     await patientRef.set(data);
     return PatientFirestoreModel.fromDocumentData(
       (await patientRef.get()).data()
@@ -50,7 +49,6 @@ export class PatientsService {
       PartialPatientFirestoreModel.fromPartialEntity(
         partialPatient
       ).toDocumentData();
-    console.log("update: document data: ", documentData, partialPatient);
     await this.doc(patientId).update(documentData);
   }
 }

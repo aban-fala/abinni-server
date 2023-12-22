@@ -20,11 +20,7 @@ export function validatePatientName(name) {
 
 export function validatePatientAddresses(addresses) {
   if (!addresses?.length) {
-    throw new HttpResponseError(
-      400,
-      "BAD_REQUEST",
-      "Must have at least one address"
-    );
+    throw new HttpResponseError(400, "Must have at least one address");
   }
 }
 
